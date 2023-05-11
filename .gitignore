@@ -7,5 +7,4 @@ node_modules
 # Generated files
 .psci
 .idea
-dist
 output

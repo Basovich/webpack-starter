@@ -1,11 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: './src/js/pages/index.js',
+    about: './src/js/pages/about.js',
+    global: './src/js/global.js',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
   },
@@ -23,13 +29,27 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/html/index.html',
       filename: 'index.html',
-      inject: 'body',
+      chunks: ['index', 'global'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/html/about.html',
+      filename: 'about.html',
+      chunks: ['about', 'global'],
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles.css',
+      filename: '[name].bundle.css',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './src/assets',
+          to: 'assets',
+        },
+      ],
+    }),
+    new CleanWebpackPlugin(),
   ],
   devServer: {
     static: {
