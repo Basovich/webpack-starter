@@ -38,6 +38,11 @@ module.exports = {
       filename: 'about.html',
       chunks: ['about', 'global'],
     }),
+    new HtmlWebpackPlugin({
+      template: './src/html/blog/post.html',
+      filename: 'blog/post.html',
+      chunks: ['global'],
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].bundle.css',
     }),
