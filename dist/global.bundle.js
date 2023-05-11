@@ -1,1 +1,0 @@
-(()=>{"use strict";const n=n=>{console.log(n)};window.addEventListener("DOMContentLoaded",(function(){n("initMobileMenu"),n("global")}))})();
