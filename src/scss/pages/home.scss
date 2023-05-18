@@ -1,4 +1,13 @@
+@import "../components/buttons/primary";
+
 body {
   background-color: #222;
   color: #fff;
+}
+
+.h1 {
+  background-image: url('../../assets/images/img1.jpg');
+  @media (min-width: 320px) {
+    font-size: 40px;
+  }
 }
